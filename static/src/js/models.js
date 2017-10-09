@@ -28,10 +28,14 @@ openerp.pos_client_default = function(instance){
             {
                 _(partners).each(function(el){
                     if(el.default_customer)
-                        client_default = el;
+                       client_default = el;
                 });
             }
-            return client_default != null? client_default.name : client_default;
+
+            if(client_default!=null)
+                this.set('client',client_default);
+
+            return this.get('client') != null? this.get('client').name : this.get('client');
         },
     });
 }
